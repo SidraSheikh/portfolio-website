@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaBriefcase, FaCalendarAlt, FaBuilding } from "react-icons/fa";
+import { FaExternalLinkAlt, FaArrowRight } from "react-icons/fa";
 
 const Experience = () => {
   const experiences = [
@@ -8,121 +8,132 @@ const Experience = () => {
       role: "Frontend Developer",
       company: "ZirveSol",
       period: "Sept 2025 - Present",
-      description: "Architecting dynamic frontend architectures for high-traffic platforms including Cratos and flight booking engines.",
-      skills: ["React.js", "Redux", "API Integration", "Tailwind"],
-      gradient: "from-purple-500 to-indigo-500",
-      active: true,
+      description: "Built the core frontend for high-traffic platforms like Cratos. Implemented dynamic flight booking engines and optimized rendering performance by 40%.",
+      tags: ["React.js", "Redux", "Tailwind CSS"],
+      link: "https://zirvesol.com", // Agar link hai to dalein
+      color: "from-purple-600 to-blue-600",
+      // Yahan apni website ka screenshot lagayen
+      image: "https://shots.codepen.io/username/pen/MWKbwqv-800.jpg?version=1690000000" 
     },
     {
-      role: "Frontend Developer (Part Time)",
+      role: "Frontend Developer",
       company: "RoadGauge",
       period: "March 2025 - Present",
-      description: "Optimizing reporting modules using WeasyPrint with Python backend. Focused on system scalability and rendering performance.",
-      skills: ["Python", "WeasyPrint", "Performance", "Optimization"],
-      gradient: "from-cyan-500 to-blue-500",
-      active: true,
+      description: "Enhancing reporting modules with Python backends. Transformed static data into interactive visual dashboards for scalability.",
+      tags: ["Python", "Data Viz", "Optimization"],
+      link: "#",
+      color: "from-cyan-500 to-teal-500",
+      image: "https://cdn.dribbble.com/userupload/12474443/file/original-09029a1b50426d4007dfc920f5b12854.png?resize=1504x1128" 
     },
     {
       role: "Software Developer",
       company: "ScitForte",
       period: "Jan 2025 - March 2025",
-      description: "Spearheaded the VMS (Visitor Management System) SaaS product using MERN stack. Managed full lifecycle from database design to UI.",
-      skills: ["MERN Stack", "SaaS", "MongoDB", "System Design"],
-      gradient: "from-pink-500 to-rose-500",
-      active: false,
-    },
-    {
-      role: "Web Developer Intern",
-      company: "Oasis Infobyte",
-      period: "Oct 2024 - Nov 2024",
-      description: "Engineered a real-time pizza delivery application with live tracking, secure JWT authentication, and RESTful API architecture.",
-      skills: ["React", "Node.js", "Real-time Tracking", "Auth"],
-      gradient: "from-yellow-400 to-orange-500",
-      active: false,
+      description: "Developed a SaaS-based Visitor Management System. Handled full-stack logic from MongoDB schema design to React UI implementation.",
+      tags: ["MERN Stack", "SaaS", "System Design"],
+      link: "#",
+      color: "from-pink-500 to-rose-500",
+      image: "https://cdn.dribbble.com/users/418188/screenshots/16383287/media/13593259e248b1d9dfd70716b08d0e0a.png?resize=1600x1200&vertical=center" 
     }
   ];
 
   return (
-    <section id="experience" className="py-24 relative overflow-hidden bg-[#050505]">
-      {/* Background Glows */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-900/20 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-900/20 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2"></div>
+    <section id="experience" className="py-24 bg-[#050505] relative overflow-hidden">
+      
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
 
-      <div className="max-w-5xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-24"
         >
-          <span className="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-2 block">Career Path</span>
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Experience</span>
+           <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Showcase</span>
           </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            Not just experience, but impact. Here are the platforms I've engineered.
+          </p>
         </motion.div>
 
-        <div className="relative border-l-2 border-white/10 ml-3 md:ml-6 space-y-12">
+        <div className="space-y-32">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="relative pl-8 md:pl-12 group"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 items-center`}
             >
-              {/* Timeline Dot */}
-              <div className={`absolute left-[-9px] md:left-[-10px] top-0 w-5 h-5 rounded-full border-4 border-[#050505] bg-gradient-to-r ${exp.gradient} shadow-[0_0_10px_rgba(0,0,0,0.5)] group-hover:scale-125 transition-transform duration-300`}></div>
-
-              {/* Card */}
-              <div className="relative p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm overflow-hidden group-hover:border-white/20 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-900/10 hover:-translate-y-1">
-                
-                {/* Hover Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${exp.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4 relative z-10">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white group-hover:text-cyan-100 transition-colors">
-                      {exp.role}
-                    </h3>
-                    <div className="flex items-center gap-2 text-gray-400 mt-1 text-sm font-medium">
-                      <FaBuilding className="text-cyan-500" />
-                      <span>{exp.company}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 w-fit">
-                    <FaCalendarAlt className="text-xs text-gray-400" />
-                    <span className="text-xs font-mono text-gray-300">{exp.period}</span>
-                  </div>
+              
+              {/* Text Side */}
+              <div className="flex-1 space-y-6">
+                <div className="flex items-center gap-3">
+                   <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${exp.color}`}></div>
+                   <span className="text-cyan-400 font-mono tracking-widest text-sm">{exp.company}</span>
                 </div>
-
-                <p className="text-gray-400 leading-relaxed mb-6 relative z-10">
+                
+                <h3 className="text-4xl font-bold text-white leading-tight">
+                  {exp.role}
+                </h3>
+                
+                <p className="text-gray-400 text-lg leading-relaxed">
                   {exp.description}
                 </p>
 
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 relative z-10">
-                  {exp.skills.map((skill, i) => (
-                    <span 
-                      key={i} 
-                      className="px-3 py-1 text-xs font-medium rounded-md bg-white/5 text-cyan-200/80 border border-white/5 hover:border-cyan-500/30 hover:bg-cyan-500/10 transition-all"
-                    >
-                      {skill}
+                <div className="flex flex-wrap gap-3 pt-4">
+                  {exp.tags.map((tag, i) => (
+                    <span key={i} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300 hover:text-white hover:border-cyan-500/50 transition-colors">
+                      {tag}
                     </span>
                   ))}
                 </div>
-                
-                {/* Active/Present Indicator (Optional) */}
-                {exp.active && (
-                   <div className="absolute top-4 right-4 hidden md:flex items-center gap-2">
-                     <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                     </span>
-                   </div>
-                )}
+
+                <div className="pt-6 flex items-center gap-6">
+                    <span className="text-gray-500 text-sm font-mono">{exp.period}</span>
+                    {exp.link !== "#" && (
+                        <a href={exp.link} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors group cursor-pointer font-bold">
+                            Live Preview <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                        </a>
+                    )}
+                </div>
               </div>
+
+              {/* Visual Side (The Website Mockup) */}
+              <div className="flex-1 w-full relative perspective-1000 group">
+                {/* Glow Effect behind image */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${exp.color} blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity duration-500`}></div>
+                
+                {/* Browser Window Frame */}
+                <motion.div 
+                    whileHover={{ scale: 1.02, rotateY: index % 2 === 0 ? 5 : -5, rotateX: 2 }}
+                    className="relative rounded-xl bg-[#1a1a1a] border border-white/10 overflow-hidden shadow-2xl shadow-black/50"
+                >
+                    {/* Browser Header */}
+                    <div className="h-8 bg-[#2a2a2a] border-b border-white/5 flex items-center px-4 gap-2">
+                        <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                        <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                        <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        <div className="ml-4 flex-1 h-4 bg-[#1a1a1a] rounded-full opacity-50 text-[10px] flex items-center px-2 text-gray-500 font-mono overflow-hidden">
+                            {exp.link || "localhost:3000"}
+                        </div>
+                    </div>
+
+                    {/* Project Image */}
+                    <div className="relative aspect-video overflow-hidden bg-gray-900 group-hover:brightness-110 transition-all">
+                        <img 
+                            src={exp.image} 
+                            alt={exp.role} 
+                            className="w-full h-full object-cover object-top opacity-90 group-hover:scale-105 transition-transform duration-700"
+                        />
+                        {/* Overlay Gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60"></div>
+                    </div>
+                </motion.div>
+              </div>
+
             </motion.div>
           ))}
         </div>
