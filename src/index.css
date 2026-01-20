@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dark: #050505;
+}
+
+body {
+  @apply bg-[#050505] text-white overflow-x-hidden;
+  font-family: 'Inter', sans-serif;
+  /* Smooth scrolling for the whole page */
+  scroll-behavior: smooth; 
+}
+
+/* --- SCROLLBAR STYLING --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9333ea, #22d3ee);
+  border-radius: 4px;
+}
+
+/* --- ANIMATED STARS BACKGROUND (Preserved & Optimized) --- */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+  overflow: hidden;
+  pointer-events: none; /* Improvements performance */
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--duration) ease-in-out infinite;
+  opacity: var(--opacity);
+}
+
+/* --- CUSTOM UTILITIES & ANIMATIONS --- */
+@layer utilities {
+  /* Required for the 3D Terminal Tilt */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  /* Text Gradient Animation Class */
+  .animate-gradient-fast {
+    background-size: 200% auto;
+    animation: gradient 4s linear infinite;
+  }
+
+  /* Slower, more organic pulse for background blobs */
+  .animate-pulse-slow {
+    animation: pulse-glow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Optional: Adds a CRT Monitor scanline effect */
+  .scanlines {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0) 50%,
+      rgba(0,0,0,0.1) 50%,
+      rgba(0,0,0,0.1)
+    );
+    background-size: 100% 4px;
+  }
+}
+
+/* --- KEYFRAMES --- */
+
+/* 1. Gradient Text Movement */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 2. Twinkle Effect */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 4px white; }
+}
+
+/* 3. Organic Blob Pulse */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.1); }
+}
+
+/* 4. Floating Animation (Smoother) */
+@keyframes float {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  33% { transform: translate(10px, -10px) rotate(2deg); }
+  66% { transform: translate(-5px, 5px) rotate(-1deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* --- COMPONENT CLASSES --- */
+
+/* Refined Glow Blob */
+.glow-blob {
+  position: absolute;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.4;
+  will-change: transform; /* Performance optimization */
+  animation: float 15s infinite ease-in-out alternate;
+}
+
+/* Gradient Text Helper */
+.text-gradient {
+  background: linear-gradient(to right, #c084fc, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
