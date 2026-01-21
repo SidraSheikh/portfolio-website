@@ -1,58 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  FaUserCheck,
-  FaGraduationCap,
-  FaAward,
-  FaUsers,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
-
-import profileImg from "../assets/profile.jpg";
-import edu1 from "../assets/convocation.jpg";
-import edu2 from "../assets/uni-group.jpg";
-import edu3 from "../assets/classroom.jpg";
-import award2 from "../assets/chancellor-award.jpg";
-import award1 from "../assets/president-award.jpg";
-import lead1 from "../assets/genz-event.jpg";
-import lead2 from "../assets/genz-team.jpg";
-import lead3 from "../assets/genz-speaker.jpg";
-import lead4 from "../assets/genz-crowd.jpg";
+import { FaUserCheck, FaGraduationCap, FaAward, FaUsers } from "react-icons/fa";
 
 const About = () => {
   const [activeTab, setActiveTab] = useState("story");
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    setCurrentImageIndex(0);
-  }, [activeTab]);
-
-  useEffect(() => {
-    const images = tabData[activeTab].images;
-    if (images.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % images.length);
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [activeTab]);
-
-  const nextImage = () => {
-    const images = tabData[activeTab].images;
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    const images = tabData[activeTab].images;
-    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
 
   const tabData = {
     story: {
       title: "My Story",
       icon: <FaUserCheck />,
-      images: [profileImg],
+      color: "from-cyan-500 to-blue-500",
+      glow: "shadow-cyan-500/50",
+      textColor: "text-cyan-400",
       content: (
         <div className="space-y-4 md:space-y-6 text-gray-300 leading-relaxed text-base md:text-lg">
           <p>
@@ -69,11 +28,13 @@ const About = () => {
             <span className="text-purple-400"> scalable web ecosystems</span>.
           </p>
           <p>
-            I don't just write code; I engineer solutions. From leading
-            development teams for enterprise{" "}
-            <strong className="text-white">VMS systems</strong>
-            to creating AI-powered fall detection algorithms, I thrive on
-            complex challenges.
+            My focus goes beyond syntax; I build scalable ecosystems. Whether
+            developing{" "}
+            <strong className="text-white">complex web applications</strong> or
+            deploying{" "}
+            <strong className="text-white">AI-driven algorithms</strong>, I
+            merge technical precision with innovative thinking to solve
+            real-world problems.
           </p>
         </div>
       ),
@@ -81,7 +42,9 @@ const About = () => {
     education: {
       title: "Education",
       icon: <FaGraduationCap />,
-      images: [edu1, edu2, edu3],
+      color: "from-purple-500 to-indigo-500",
+      glow: "shadow-purple-500/50",
+      textColor: "text-purple-400",
       content: (
         <div className="space-y-6">
           <div className="relative group p-1 rounded-2xl bg-gradient-to-br from-purple-600/20 to-cyan-600/20">
@@ -121,7 +84,9 @@ const About = () => {
     awards: {
       title: "Academic Awards",
       icon: <FaAward />,
-      images: [award1, award2],
+      color: "from-yellow-400 to-orange-500",
+      glow: "shadow-yellow-500/50",
+      textColor: "text-yellow-400",
       content: (
         <div className="grid grid-cols-1 gap-3 md:gap-4">
           {[
@@ -178,7 +143,9 @@ const About = () => {
     leadership: {
       title: "Leadership",
       icon: <FaUsers />,
-      images: [lead1, lead2, lead3, lead4],
+      color: "from-pink-500 to-rose-500",
+      glow: "shadow-pink-500/50",
+      textColor: "text-pink-400",
       content: (
         <div className="bg-[#1a1a1a] p-4 md:p-6 rounded-xl border border-white/10 hover:border-pink-500/50 transition-all group shadow-lg shadow-pink-900/10">
           <div className="flex flex-col sm:flex-row items-start gap-4 md:gap-5">
@@ -254,80 +221,52 @@ const About = () => {
           <div className="lg:col-span-5 relative flex flex-col">
             <motion.div
               layout
-              className="relative rounded-3xl overflow-hidden border border-white/10 bg-[#111] p-2 group h-[400px] lg:h-full lg:min-h-[450px] shadow-2xl"
+              className="relative rounded-3xl overflow-hidden border border-white/10 bg-[#0a0a0a] p-1 group h-[300px] lg:h-full lg:min-h-[450px] shadow-2xl flex items-center justify-center"
             >
-              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-900">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={`${activeTab}-${currentImageIndex}`}
-                    src={currentTabInfo.images[currentImageIndex]}
-                    alt={currentTabInfo.title}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </AnimatePresence>
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:14px_14px] opacity-20"></div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-
-                {currentTabInfo.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-black/50 hover:bg-cyan-500/80 text-white rounded-full backdrop-blur-md border border-white/10 transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 z-20"
-                    >
-                      <FaChevronLeft size={14} />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-black/50 hover:bg-cyan-500/80 text-white rounded-full backdrop-blur-md border border-white/10 transition-all opacity-100 lg:opacity-0 lg:group-hover:opacity-100 z-20"
-                    >
-                      <FaChevronRight size={14} />
-                    </button>
-
-                    <div className="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                      {currentTabInfo.images.map((_, idx) => (
-                        <div
-                          key={idx}
-                          className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImageIndex ? "bg-cyan-400 w-6 md:w-8" : "bg-white/30 w-2"}`}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
-
-                <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6 z-10">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.4, type: "spring" }}
+                  className="relative z-10 flex flex-col items-center justify-center"
+                >
                   <motion.div
-                    key={activeTab}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
+                    animate={{
+                      y: [0, -15, 0],
+                      filter: [
+                        "drop-shadow(0 0 10px rgba(255,255,255,0.1))",
+                        "drop-shadow(0 0 30px rgba(255,255,255,0.3))",
+                        "drop-shadow(0 0 10px rgba(255,255,255,0.1))",
+                      ],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className={`text-9xl md:text-[10rem] bg-gradient-to-br ${currentTabInfo.color} text-transparent bg-clip-text drop-shadow-2xl`}
                   >
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">
-                      {currentTabInfo.title}
-                    </h3>
-
-                    <div className="text-sm font-mono truncate">
-                      {activeTab === "story" && (
-                        <p className="text-cyan-400">
-                          Sidra Sheikh • Software Engineer
-                        </p>
-                      )}
-                      {activeTab === "leadership" && (
-                        <p className="text-pink-400">GEN Z Society Events</p>
-                      )}
-                      {activeTab === "awards" && (
-                        <p className="text-yellow-400">Achievement Moments</p>
-                      )}
-                      {activeTab === "education" && (
-                        <p className="text-purple-400">MAJU Campus Life</p>
-                      )}
-                    </div>
+                    {currentTabInfo.icon}
                   </motion.div>
-                </div>
-              </div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className={`mt-6 text-xl font-mono font-bold tracking-widest uppercase ${currentTabInfo.textColor}`}
+                  >
+                    {currentTabInfo.title}
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+
+              <div
+                className={`absolute inset-0 bg-gradient-to-t ${currentTabInfo.color} opacity-5 blur-[100px] pointer-events-none transition-colors duration-500`}
+              ></div>
             </motion.div>
           </div>
 
@@ -339,7 +278,7 @@ const About = () => {
                   onClick={() => setActiveTab(tab)}
                   className={`px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-semibold transition-all border backdrop-blur-md whitespace-nowrap ${
                     activeTab === tab
-                      ? "bg-gradient-to-r from-purple-600 to-blue-600 border-transparent text-white shadow-lg shadow-purple-500/25 scale-105"
+                      ? `bg-gradient-to-r ${tabData[tab].color} border-transparent text-white shadow-lg scale-105`
                       : "bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:text-white hover:border-white/20"
                   }`}
                 >
@@ -349,7 +288,9 @@ const About = () => {
             </div>
 
             <div className="bg-[#0f1014] border border-white/10 rounded-3xl p-5 md:p-8 flex-1 relative overflow-hidden shadow-2xl flex flex-col justify-center min-h-[300px]">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 blur-[80px] rounded-full pointer-events-none"></div>
+              <div
+                className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${currentTabInfo.color} opacity-10 blur-[80px] rounded-full pointer-events-none transition-all duration-500`}
+              ></div>
 
               <AnimatePresence mode="wait">
                 <motion.div
@@ -360,7 +301,9 @@ const About = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8 border-b border-white/5 pb-4">
-                    <div className="p-2 md:p-3 bg-white/5 rounded-xl text-cyan-400 text-xl md:text-2xl border border-white/10">
+                    <div
+                      className={`p-2 md:p-3 bg-white/5 rounded-xl ${currentTabInfo.textColor} text-xl md:text-2xl border border-white/10`}
+                    >
                       {currentTabInfo.icon}
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold text-white">
