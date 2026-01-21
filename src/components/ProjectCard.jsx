@@ -10,7 +10,7 @@ const VisualAI = () => (
       transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
       className="absolute left-0 w-full h-[2px] bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.8)] z-10"
     />
-    <FaRobot className="text-6xl text-purple-500/50 relative z-0" />
+    <FaRobot className="text-5xl sm:text-6xl text-purple-500/50 relative z-0" />
     <div className="absolute bottom-4 left-4 right-4 flex gap-2">
       <div className="h-1 flex-1 bg-purple-500/30 rounded-full animate-pulse"></div>
       <div className="h-1 w-1/3 bg-purple-500/30 rounded-full"></div>
@@ -36,7 +36,7 @@ const VisualDashboard = () => (
 );
 
 const VisualCode = () => (
-  <div className="absolute inset-0 bg-[#0F1115] p-5 font-mono text-[10px] text-gray-500 leading-relaxed overflow-hidden">
+  <div className="absolute inset-0 bg-[#0F1115] p-4 sm:p-5 font-mono text-[9px] sm:text-[10px] text-gray-500 leading-relaxed overflow-hidden">
     <div className="flex gap-1.5 mb-3">
         <div className="w-2 h-2 rounded-full bg-red-500/50"></div>
         <div className="w-2 h-2 rounded-full bg-yellow-500/50"></div>
@@ -57,10 +57,9 @@ const VisualCode = () => (
 
 const VisualMedia = ({ icon: Icon, color }) => (
   <div className={`absolute inset-0 bg-gradient-to-br ${color} to-black flex items-center justify-center group-hover:scale-110 transition-transform duration-700`}>
-    <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center border border-white/10 backdrop-blur-sm">
-        <Icon className="text-4xl text-white/80" />
+    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/5 flex items-center justify-center border border-white/10 backdrop-blur-sm">
+        <Icon className="text-3xl sm:text-4xl text-white/80" />
     </div>
-    {/* Floating Particles */}
     {[...Array(5)].map((_, i) => (
         <motion.div 
             key={i}
@@ -73,10 +72,7 @@ const VisualMedia = ({ icon: Icon, color }) => (
   </div>
 );
 
-// --- 2. MAIN COMPONENT ---
-
 const ProjectCard = ({ project }) => {
-  // Determine which visual to show based on ID or Type
   const renderVisual = () => {
     switch (project.visualType) {
         case "AI": return <VisualAI />;
@@ -98,11 +94,9 @@ const ProjectCard = ({ project }) => {
       transition={{ duration: 0.3 }}
       className="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-500/30 transition-all hover:shadow-2xl hover:shadow-cyan-900/20 flex flex-col h-full"
     >
-      {/* Abstract Visual Header */}
-      <div className="relative h-48 w-full border-b border-white/5 bg-[#050505] overflow-hidden">
+      <div className="relative h-40 sm:h-48 w-full border-b border-white/5 bg-[#050505] overflow-hidden shrink-0">
          {renderVisual()}
          
-         {/* Overlay Gradient for Text Contrast */}
          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10"></div>
          
          {project.type === "Client" && (
@@ -112,17 +106,16 @@ const ProjectCard = ({ project }) => {
         )}
       </div>
 
-      <div className="p-6 flex flex-col flex-1 relative z-20">
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+      <div className="p-4 sm:p-6 flex flex-col flex-1 relative z-20">
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
           {project.title}
         </h3>
         <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
           {project.description}
         </p>
 
-        {/* Tech Stack - Pushed to bottom of content */}
         <div className="mt-auto">
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
             {project.techStack.map((tech, i) => (
                 <span
                 key={i}
