@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaCode, FaChartLine, FaRobot, FaVideo, FaShoppingCart, FaFilm } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaCode, FaLaptopCode, FaRobot, FaVideo, FaShoppingCart, FaFilm } from "react-icons/fa";
 
 const VisualAI = () => (
   <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 to-black flex items-center justify-center overflow-hidden">
@@ -60,7 +60,6 @@ const VisualMedia = ({ icon: Icon, color }) => (
     <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center border border-white/10 backdrop-blur-sm">
         <Icon className="text-4xl text-white/80" />
     </div>
-    {/* Floating Particles */}
     {[...Array(5)].map((_, i) => (
         <motion.div 
             key={i}
@@ -73,10 +72,70 @@ const VisualMedia = ({ icon: Icon, color }) => (
   </div>
 );
 
-// --- 2. MAIN COMPONENT ---
+const projectsData = [
+    {
+      id: 1,
+      title: "Step Secure - AI Fall Detection",
+      description: "Enterprise-grade AI system for elderly care using MediaPipe. Features real-time alerts via Firebase and Flutter app integration with 90% accuracy.",
+      techStack: ["Python", "Flutter", "Firebase", "MediaPipe"],
+      visualType: "AI",
+      liveLink: "https://www.linkedin.com/posts/sidra-sheikh-346b8a311_graduation-softwareengineering-stepsecure-activity-7348313624513265664-WNSb",
+      githubLink: "", 
+      type: "Featured"
+    },
+    {
+      id: 2,
+      title: "RoadGauge VMS",
+      description: "Commercial Vehicle Management System tracking fleet operations, maintenance scheduling, and driver analytics for logistics optimization.",
+      techStack: ["React", "Node.js", "MongoDB", "Maps API"],
+      visualType: "DASHBOARD",
+      liveLink: "https://vms-ecru.vercel.app/", 
+      githubLink: "", 
+      type: "Client"
+    },
+    {
+      id: 3,
+      title: "Code Ease - Online Code Editor",
+      description: "A centralized hub of 30+ JavaScript mini-applications demonstrating core algorithm logic. Supports HTML, CSS, JS execution in browser.",
+      techStack: ["JavaScript", "HTML5", "CSS3", "Ace Editor"],
+      visualType: "CODE",
+      liveLink: "https://code-ease.vercel.app/mainpage",
+      githubLink: "https://github.com/SidraSheikh",
+      type: "Personal"
+    },
+    {
+      id: 4,
+      title: "AI Video Generator UI",
+      description: "Modern Frontend interface for an AI-powered video generation tool. Demonstrates complex UI logic, gradient animations, and API integration.",
+      techStack: ["React", "Tailwind", "Framer Motion"],
+      visualType: "VIDEO",
+      liveLink: "https://aivideogenerator-frontend-loio.vercel.app/",
+      githubLink: "",
+      type: "Personal"
+    },
+    {
+      id: 5,
+      title: "E-Commerce Admin Dashboard",
+      description: "Comprehensive admin panel for managing products, orders, and users. Features dynamic charts, dark mode, and data visualization.",
+      techStack: ["React", "Material UI", "Recharts"],
+      visualType: "ECOMMERCE",
+      liveLink: "https://e-commerce-admin-dashboard-beta.vercel.app/",
+      githubLink: "",
+      type: "Personal"
+    },
+    {
+      id: 6,
+      title: "Movie Search App",
+      description: "Interactive movie discovery application consuming TMDB API. Features search functionality, dynamic filtering, and detailed movie views.",
+      techStack: ["JavaScript", "TMDB API", "CSS3"],
+      visualType: "MOVIE",
+      liveLink: "https://sidrasheikh.github.io/Movie-search-application/",
+      githubLink: "https://github.com/SidraSheikh/Movie-search-application",
+      type: "Personal"
+    }
+];
 
 const ProjectCard = ({ project }) => {
-  // Determine which visual to show based on ID or Type
   const renderVisual = () => {
     switch (project.visualType) {
         case "AI": return <VisualAI />;
@@ -98,11 +157,9 @@ const ProjectCard = ({ project }) => {
       transition={{ duration: 0.3 }}
       className="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-500/30 transition-all hover:shadow-2xl hover:shadow-cyan-900/20 flex flex-col h-full"
     >
-      {/* Abstract Visual Header */}
       <div className="relative h-48 w-full border-b border-white/5 bg-[#050505] overflow-hidden">
          {renderVisual()}
          
-         {/* Overlay Gradient for Text Contrast */}
          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10"></div>
          
          {project.type === "Client" && (
@@ -120,7 +177,6 @@ const ProjectCard = ({ project }) => {
           {project.description}
         </p>
 
-        {/* Tech Stack - Pushed to bottom of content */}
         <div className="mt-auto">
             <div className="flex flex-wrap gap-2 mb-6">
             {project.techStack.map((tech, i) => (
@@ -159,4 +215,38 @@ const ProjectCard = ({ project }) => {
   );
 };
 
-export default ProjectCard;
+const Projects = () => {
+  return (
+    <section id="projects" className="py-24 bg-[#050505] relative overflow-hidden">
+      
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        <div className="text-center mb-20">
+          <motion.div 
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-400 text-sm font-medium mb-4"
+          >
+            <FaCode className="text-xs" /> Portfolio
+          </motion.div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Projects</span>
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+             A selection of commercial projects and personal experiments across Full Stack Web and AI.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projectsData.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
